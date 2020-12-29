@@ -3,9 +3,11 @@ require 'tdameritrade/client'
 require 'tdameritrade/error'
 require 'tdameritrade/version'
 require 'tdameritrade/operations/create_watchlist'
+require 'tdameritrade/operations/place_order'
 require 'tdameritrade/operations/get_instrument_fundamentals'
 require 'tdameritrade/operations/get_price_history'
 require 'tdameritrade/operations/get_quotes'
+require 'tdameritrade/operations/get_account'
 require 'tdameritrade/operations/get_watchlists'
 require 'tdameritrade/operations/replace_watchlist'
 require 'tdameritrade/operations/update_watchlist'
@@ -32,6 +34,14 @@ module TDAmeritrade
 
     def get_quotes(symbols)
       Operations::GetQuotes.new(self).call(symbols: symbols)
+    end
+
+    def get_account(account_id)
+      Operations::GetAccount.new(self).call(account_id)
+    end
+
+    def place_order(account_id, symbol, quantity)
+      Operations::PlaceOrder.new(self).call(account_id, symbol, quantity)
     end
 
     def create_watchlist(account_id, watchlist_name, symbols)
