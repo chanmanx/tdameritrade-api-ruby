@@ -7,10 +7,9 @@ module TDAmeritrade; module Operations
     def call(account_id, symbol, quantity)
       # market order for now, add support for limit later
       body = {
-        "orderType": "LIMIT",
+        "orderType": "MARKET",
         "session": "NORMAL",
         "duration": "DAY",
-        "price": "5",
         "orderStrategyType": "SINGLE",
         "orderLegCollection": [
           {
